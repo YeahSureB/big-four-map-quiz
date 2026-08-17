@@ -1,0 +1,517 @@
+/* =============================================
+   Pro Sports Stadium Quiz — Styles
+   Based on US Politics Geography Quiz / Michigan Geography Quiz styles
+   ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #14151f;
+    color: #333;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-interface {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+}
+
+/* ---- Info Panel ---- */
+
+.info-panel {
+    background: linear-gradient(135deg, #14151f 0%, #1b2038 50%, #0f2e4d 100%);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+    border-bottom: 2px solid #ff6b35;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    min-height: 52px;
+    flex-wrap: wrap;
+}
+
+.target-city {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.02em;
+}
+
+.target-city span {
+    color: #f6c90e;
+    font-size: 1.15rem;
+}
+
+.game-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex: 1; /* Allow to take space so change-mode-btn can be pushed */
+    justify-content: flex-end; /* Align right to pair nicely */
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.88rem;
+}
+
+.stat .label {
+    color: #a0aec0;
+}
+
+.stat span:last-child {
+    color: #f6c90e;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.change-mode-btn {
+    background: rgba(255, 107, 53, 0.15);
+    color: #ff6b35;
+    border: 1px solid #ff6b35;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin-left: 16px; /* Visual separation from the stats */
+}
+
+.change-mode-btn:hover {
+    background: #ff6b35;
+    color: white;
+}
+
+/* ---- Mastery Progress Bar ---- */
+
+.mastery-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.mastery-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f6c90e, #27ae60);
+    transition: width 0.4s ease;
+}
+
+/* ---- Map ---- */
+
+#map {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    cursor: crosshair;
+}
+
+/* ---- Result Panel ---- */
+
+.result-panel {
+    position: absolute;
+    top: 60px;
+    left: 12px;
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    z-index: 1000;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+}
+
+.result-panel.hidden {
+    display: none;
+}
+
+.result-message {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a202c;
+}
+
+.result-distance {
+    font-size: 0.88rem;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.result-panel hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 10px 0;
+}
+
+/* ---- Team Logo ---- */
+
+#logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+#team-logo {
+    max-width: 140px;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+.sidebar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    line-height: 1.5;
+}
+
+.result-primary {
+    margin-bottom: 4px;
+}
+
+.result-team-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a202c;
+    line-height: 1.3;
+}
+
+.result-venue-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.result-city-state {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.sidebar-info > div {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.sidebar-info strong {
+    color: #4a5568;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.sidebar-info span {
+    color: #1a202c;
+    font-weight: 500;
+}
+
+.fun-fact {
+    background: #f7fafc;
+    border-left: 3px solid #667eea;
+    padding: 8px 10px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+.result-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.next-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.next-btn:first-child {
+    background: linear-gradient(135deg, #14151f, #0f2e4d);
+    color: white;
+}
+
+.next-btn:first-child:hover {
+    background: linear-gradient(135deg, #0f2e4d, #ff6b35);
+    color: white;
+}
+
+.next-btn:active {
+    transform: scale(0.98);
+}
+
+/* ---- Mode Selection & Post-Game Overlays ---- */
+
+.mode-selection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 28, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    gap: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.mode-selection.hidden {
+    display: none;
+}
+
+.mode-selection h1 {
+    color: #f6c90e;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.mode-selection p {
+    color: #a0aec0;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mode-btn {
+    background: rgba(255,255,255,0.06);
+    color: #e2e8f0;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 18px 36px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 160px;
+}
+
+.mode-btn:hover {
+    background: #ff6b35;
+    border-color: #ff6b35;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,107,53,0.35);
+}
+
+/* League-tinted borders on the mode-select buttons — purely cosmetic, hover always wins */
+.league-nfl { border-color: rgba(89, 66, 40, 0.5); }
+.league-nba { border-color: rgba(200, 90, 20, 0.5); }
+.league-mlb { border-color: rgba(40, 80, 140, 0.5); }
+.league-nhl { border-color: rgba(120, 190, 220, 0.5); }
+.league-all {
+    background: rgba(246, 201, 14, 0.08);
+    border-color: rgba(246, 201, 14, 0.4);
+}
+.league-all:hover {
+    background: #f6c90e;
+    border-color: #f6c90e;
+    color: #14151f;
+    box-shadow: 0 6px 20px rgba(246,201,14,0.35);
+}
+
+/* ---- Leaderboard Elements ---- */
+
+.leaderboard-container {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 16px;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e2e8f0;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.leaderboard-table th {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    text-align: left;
+    padding: 8px 4px;
+}
+
+/* Arcade alignment styling */
+.leaderboard-table th:first-child, .leaderboard-table td:first-child { width: 45%; }
+.leaderboard-table th:nth-child(2), .leaderboard-table td:nth-child(2) { width: 25%; text-align: center; }
+.leaderboard-table th:last-child, .leaderboard-table td:last-child { width: 30%; text-align: right; }
+
+.leaderboard-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.leaderboard-table tr:last-child {
+    border-bottom: none;
+}
+
+.initials-entry {
+    margin-top: 10px;
+}
+
+.initials-entry p {
+    color: #f6c90e;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+#player-initials {
+    width: 90px;
+    font-size: 1.4rem;
+    font-family: monospace;
+    text-align: center;
+    border: 2px solid #ff6b35;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-transform: uppercase;
+    outline: none;
+    transition: background 0.2s;
+}
+
+#player-initials:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#submit-score-btn {
+    padding: 10px 20px;
+    min-width: 0;
+    font-size: 1rem;
+}
+
+#submit-score-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Focus indicators for keyboard navigation */
+.mode-btn:focus,
+.next-btn:focus,
+#player-initials:focus,
+.change-mode-btn:focus {
+    outline: 2px solid #f6c90e;
+    outline-offset: 2px;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 600px) {
+    .result-panel {
+        width: calc(100vw - 24px);
+        left: 12px;
+        top: auto;
+        bottom: 12px;
+        max-height: 55vh;
+    }
+
+    .info-panel {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .target-city {
+        font-size: 0.9rem;
+    }
+
+    .mode-selection h1 {
+        font-size: 1.6rem;
+    }
+
+    .game-stats {
+        justify-content: flex-start;
+    }
+
+    .change-mode-btn {
+        margin-left: auto;
+    }
+
+    .mode-btn {
+        min-width: 130px;
+        padding: 14px 24px;
+    }
+}

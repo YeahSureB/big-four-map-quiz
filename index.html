@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://server.arcgisonline.com; connect-src 'self';">
+    <title>Pro Sports Stadium Quiz</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Game Interface (visible from start, map loads here) -->
+        <div id="game-interface" class="game-interface">
+            <div class="info-panel">
+                <div class="target-city">
+                    Find: <span id="target-team-name">---</span>
+                </div>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="label">Streak:</span>
+                        <span id="streak-number">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Best:</span>
+                        <span id="high-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Mastered:</span>
+                        <span id="mastery-percent">0%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Time:</span>
+                        <span id="timer-display" style="font-variant-numeric: tabular-nums;">00:00.000</span>
+                    </div>
+                    <button id="change-mode-btn" class="change-mode-btn">Change Mode</button>
+                </div>
+            </div>
+            <div class="mastery-progress">
+                <div id="mastery-progress-fill" class="mastery-progress-fill"></div>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="result-panel hidden" id="result-panel">
+                <div id="result-message" class="result-message"></div>
+                <div id="result-distance" class="result-distance"></div>
+
+                <hr>
+
+                <!-- Team Logo Container -->
+                <div id="logo-container" style="display: none;">
+                    <img id="team-logo" src="" alt="">
+                </div>
+
+                <div class="sidebar-info">
+                    <div class="result-primary">
+                        <div id="result-team" class="result-team-name"></div>
+                        <div id="result-venue" class="result-venue-name"></div>
+                        <div id="result-city-state" class="result-city-state"></div>
+                    </div>
+                    <div id="division-container"><strong>Division:</strong> <span id="result-division"></span></div>
+                    <div id="confidence-container"><strong>Confidence:</strong> <span id="result-confidence"></span></div>
+
+                    <div id="result-fact" class="fun-fact" style="margin-top: 8px; font-style: italic;"></div>
+
+                    <div style="margin-top: 8px;">
+                        <a id="result-wiki-link" href="#" target="_blank"
+                            style="color: #1a73e8; text-decoration: none;">
+                            📖 Learn more on Wikipedia →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button id="btn-next" class="next-btn">Next Target</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Mode Selection (overlays the map) -->
+        <div id="mode-selection" class="mode-selection">
+            <h1>🏟️ Pro Sports Stadium Quiz</h1>
+            <p>Find the stadium, arena, or ballpark for each franchise!</p>
+            <div class="mode-buttons">
+                <button id="nfl-btn" class="mode-btn league-nfl" data-league="NFL">NFL</button>
+                <button id="nba-btn" class="mode-btn league-nba" data-league="NBA">NBA</button>
+                <button id="mlb-btn" class="mode-btn league-mlb" data-league="MLB">MLB</button>
+                <button id="nhl-btn" class="mode-btn league-nhl" data-league="NHL">NHL</button>
+                <button id="all-btn" class="mode-btn league-all" data-league="ALL">All Leagues</button>
+            </div>
+        </div>
+
+        <!-- Post Game / Leaderboard Screen -->
+        <div id="post-game-screen" class="mode-selection hidden">
+            <h1>Run Complete!</h1>
+            <p id="final-time-display" style="font-size: 1.2rem; color: #f6c90e; margin-bottom: 24px; font-weight: bold;"></p>
+
+            <div class="leaderboard-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Score</th>
+                            <th>Initials</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="initials-entry" class="initials-entry hidden">
+                <p>New Leaderboard Entry!</p>
+                <div class="input-group">
+                    <label class="sr-only" for="player-initials">Enter your initials</label>
+                    <input type="text" id="player-initials" maxlength="3" placeholder="AAA" autocomplete="off" autocapitalize="characters">
+                    <button id="submit-score-btn" class="mode-btn">Submit</button>
+                </div>
+            </div>
+
+            <button id="play-again-btn" class="mode-btn" style="margin-top: 24px;">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Game Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
